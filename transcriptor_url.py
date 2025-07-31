@@ -3,7 +3,8 @@ import openai
 import tempfile
 import os
 import yt_dlp
-from moviepy.editor import VideoFileClip
+import ffmpeg
+
 
 # Leer la API key de OpenAI desde secrets
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
@@ -34,10 +35,10 @@ if st.button("Transcribir"):
 
             st.success("Vídeo descargado. Extrayendo audio...")
 
-            # Extraer audio
-            video = VideoFileClip(video_path)
-            audio_path = os.path.join(tmpdir, "audio.wav")
-            video.audio.write_audiofile(audio_path)
+           # Extraer audio con ffmpeg
+            audio_path = os.path.join(tmpdir, "audio.mp3")
+            ffmpeg.input(video_path).output(audio_path, format='mp3', acodec='mp3').run(overwrite_output=True)
+
 
             st.info("Transcribiendo con Whisper...")
 
