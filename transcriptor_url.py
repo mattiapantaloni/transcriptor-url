@@ -3,7 +3,6 @@ import openai
 import tempfile
 import os
 import yt_dlp
-import ffmpeg
 
 
 # Leer la API key de OpenAI desde secrets
