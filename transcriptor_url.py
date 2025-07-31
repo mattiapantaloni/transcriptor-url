@@ -50,3 +50,4 @@ if st.button("Transcribir"):
 
     except Exception as e:
         st.error(f"Ocurrió un error: {e}")
+
